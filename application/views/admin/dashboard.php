@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Gentelella Alela! | </title>
+    <title>MyOlshop</title>
 
     <!-- Bootstrap -->
     <link href="<?= base_url(); ?>admin_assets/css/bootstrap.min.css" rel="stylesheet">
@@ -22,7 +22,7 @@
       <div class="main_container">
         <div class="col-md-3 left_col">
 
-           <?php $this->load->view('admin/nav'); ?>
+           <?php echo $nav; ?>
 
         </div>
         <!-- /top navigation -->
@@ -30,7 +30,7 @@
         <!-- page content -->
         <div class="right_col" role="main">
             
-          <?php $this->load->view('admin/content'); ?>
+          <?php echo $content; ?>
 
         </div>
         <!-- /page content -->
