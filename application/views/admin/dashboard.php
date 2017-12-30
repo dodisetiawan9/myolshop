@@ -13,6 +13,9 @@
     <link href="<?= base_url(); ?>admin_assets/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="<?= base_url(); ?>admin_assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- datatables -->
+    <link href="<?= base_url(); ?>admin_assets/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>admin_assets/css/responsive.bootstrap.min.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="<?= base_url(); ?>admin_assets/css/custom.min.css" rel="stylesheet">
   </head>
@@ -49,9 +52,20 @@
     <!-- jQuery -->
     <script src="<?= base_url(); ?>admin_assets/js/jquery.min.js"></script>
     <!-- Bootstrap -->
-    <script src="<?= base_url(); ?>admin_assets/js/bootstrap.min.js"></script>    
+    <script src="<?= base_url(); ?>admin_assets/js/bootstrap.min.js"></script>
+    <!-- datatables -->
+    <script src="<?= base_url(); ?>admin_assets/js/jquery.dataTables.min.js"></script>
+    <script src="<?= base_url(); ?>admin_assets/js/dataTables.bootstrap.min.js"></script>
+    <script src="<?= base_url(); ?>admin_assets/js/dataTables.responsive.min.js"></script>
+
+        
     <!-- Custom Theme Scripts -->
     <script src="<?= base_url(); ?>admin_assets/js/custom.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#datatable').DataTable();
+      });
+    </script>
     <script type="text/javascript">
       $('.alert-message').alert().delay(3000).slideUp('slow');
     </script>

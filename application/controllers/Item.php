@@ -12,7 +12,8 @@ class Item extends CI_Controller {
 
 	public function index()
 	{
-		
+		$data['data']	= $this->m_admin->get_all('t_items');
+		$this->template->admin('admin/manage_items', $data);
 	}
 
 
@@ -58,12 +59,12 @@ class Item extends CI_Controller {
 					
 				}
 		}
-		$data['nama']		= $this->input->post('nama');
-		$data['harga']		= $this->input->post('harga');
-		$data['berat']		= $this->input->post('berat');
-		$data['status']		= $this->input->post('status');
+		$data['nama']				= $this->input->post('nama');
+		$data['harga']			= $this->input->post('harga');
+		$data['berat']			= $this->input->post('berat');
+		$data['status']			= $this->input->post('status');
 		$data['deskripsi']	= $this->input->post('deskripsi');
-		$data['header'] = "Add New Data";
+		$data['header'] 		= "Add New Data";
 		$this->template->admin('admin/item_form', $data);
 	}
 }

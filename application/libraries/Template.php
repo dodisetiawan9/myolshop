@@ -17,7 +17,6 @@ class Template
 
 		$this->ci->load->view('admin/dashboard', $data);
 	}
-
 }
 
 /* End of file Template.php */
