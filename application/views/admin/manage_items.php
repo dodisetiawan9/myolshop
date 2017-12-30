@@ -6,6 +6,15 @@
 		</div>
 		<div class="clearfix"></div>
 	</div>
+	<?php  
+		if($this->session->flashdata('alert'))
+		{
+			echo '<div class="alert alert-info alert-message">';
+			echo $this->session->flashdata('alert');
+			echo '</div>';
+
+		}
+	?>
 
 	<div class="x_content">
 		<table class="table table-striped table-bordered table-hover" id="datatable">
@@ -39,8 +48,9 @@
 							</td>
 										
 							<td>
-								<a href="" class="btn btn-success"><i class="fa fa-search-plus"> Detail</i></a>
-								<a href="" class="btn btn-warning"><i class="fa fa-edit"></i> Edit</a>
+								<a href="<?= base_url(); ?>item/detail/<?= $item->id_item; ?>" class="btn btn-success"><i class="fa fa-search-plus"></i></a>
+								<a href="<?= base_url(); ?>item/update_item/<?= $item->id_item; ?>" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+								<a href="" class="btn btn-danger"><i class="fa fa-trash"></i></a>
 							</td>
 						</tr>
 

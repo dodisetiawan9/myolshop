@@ -31,6 +31,13 @@
           <div class="form-group">
             <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">Gambar Item</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
+              <?php  
+                if(isset($gambar))
+                {
+                  echo '<input type="hidden" name="old_pic" value="'.$gambar.'">';
+                  echo '<img src="'.base_url().'assets/upload/'.$gambar.'" style="width: 30%; margin-bottom: 10px">';
+                }
+              ?>
               <input type="file" id="last-name" name="gambar" class="form-control col-md-7 col-xs-12">
             </div>
           </div>
@@ -45,7 +52,7 @@
           <div class="form-group">
             <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">Berat Item</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
-              <input type="number" name="berat" class="form-control col-md-7 col-xs-12" value="berat">
+              <input type="number" name="berat" class="form-control col-md-7 col-xs-12" value="<?= $berat ?>">
               <p class="help-text">* Berat dalam satuan gram</p>
             </div>
           </div>
@@ -72,7 +79,7 @@
 			<br />
           <div class="form-group">
             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-              <button class="btn btn-primary" type="button">Cancel</button>
+              <button class="btn btn-primary" type="button" onclick="window.history.go(-1)">Cancel</button>
               <button class="btn btn-primary" type="reset">Reset</button>
               <input type="submit" class="btn btn-success" name="submit" value="Submit">
             </div>

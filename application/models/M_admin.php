@@ -20,6 +20,19 @@ class M_admin extends CI_Model {
 
 		return $this->db->get();
 	}
+
+	public function get_where($table = null, $where = null)
+	{
+		$this->db->from($table);
+		$this->db->where($where);
+
+		return $this->db->get();
+	}
+
+	public function update($table = null, $data = null, $where = null)
+	{
+		$this->db->update($table, $data, $where);
+	}
 }
 
 /* End of file m_admin.php */
