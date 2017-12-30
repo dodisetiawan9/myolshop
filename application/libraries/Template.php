@@ -12,8 +12,8 @@ class Template
 
 	public function admin($template, $data='')
 	{
-		$data['content'] = $this->ci->load->view($template, $data, TRUE);
-		$data['nav']	 = $this->ci->load->view('admin/nav', $data, TRUE);
+		$data['content'] 	= $this->ci->load->view($template, $data, TRUE);
+		$data['nav']	 		= $this->ci->load->view('admin/nav', $data, TRUE);
 
 		$this->ci->load->view('admin/dashboard', $data);
 	}

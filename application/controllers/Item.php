@@ -50,6 +50,8 @@ class Item extends CI_Controller {
 							);
 
 							$this->m_admin->insert('t_items', $items);
+							$this->session->set_flashdata('alert', "Data berhasil disimpan");
+							redirect('item');
 					}
 					else
 					{

@@ -42,7 +42,7 @@
 										echo '<label class="label label-success" style="color:white; padding: 3px 5px;">Aktif</label>';
 									}
 									else{
-										echo '<label class="label label-danger" style="color:white; padding: 3px 5px;">Aktif</label>';
+										echo '<label class="label label-danger" style="color:white; padding: 3px 5px;">Tidak Aktif</label>';
 									}
 								?>
 							</td>
