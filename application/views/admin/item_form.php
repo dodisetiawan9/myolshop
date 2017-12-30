@@ -2,9 +2,19 @@
 	<div class="x_title">
 		<h2><?= $header; ?></h2>
 		<div class="clearfix"></div>
-
-		<?= validation_errors('<p style="color:red">','</p>'); ?>
 	</div>
+
+    <?= validation_errors('<p style="color:red">','</p>'); ?>
+
+    <?php 
+      if($this->session->flashdata('alert'))
+      {
+        echo '<div class="alert alert-danger alert-message">';
+        echo $this->session->flashdata('alert');
+        echo '</div>';
+      }
+
+    ?>
 
 	<div class="x_content">
 		<br />

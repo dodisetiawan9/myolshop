@@ -52,5 +52,8 @@
     <script src="<?= base_url(); ?>admin_assets/js/bootstrap.min.js"></script>    
     <!-- Custom Theme Scripts -->
     <script src="<?= base_url(); ?>admin_assets/js/custom.min.js"></script>
+    <script type="text/javascript">
+      $('.alert-message').alert().delay(3000).slideUp('slow');
+    </script>
   </body>
 </html>

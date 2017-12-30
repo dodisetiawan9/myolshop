@@ -29,15 +29,33 @@ class Item extends CI_Controller {
 
 			if($this->form_validation->run() == TRUE)
 				{
-					$items = array(
-						'nama_item' => $this->input->post('nama', TRUE),
-						'harga'			=> $this->input->post('harga', TRUE),
-						'berat'			=> $this->input->post('berat', TRUE),
-						'status'		=> $this->input->post('status', TRUE),
-						'deskripsi'	=> $this->input->post('deskripsi', TRUE)
-					);
+					$config['upload_path']		= './assets/upload/';
+					$config['allowed_types']	= 'jpg|png|jpeg';
+					$config['max_size']				= '2048';
+					$config['file_name']			= 'gambar'.time();
 
-					$this->m_admin->insert('t_items', $items);
+					$this->load->library('upload', $config);
+
+					if($this->upload->do_upload('gambar'))
+					{
+							$gbr = $this->upload->data();
+							$items = array(
+								'nama_item' => $this->input->post('nama', TRUE),
+								'harga'			=> $this->input->post('harga', TRUE),
+								'berat'			=> $this->input->post('berat', TRUE),
+								'status'		=> $this->input->post('status', TRUE),
+								'gambar'		=> $gbr['file_name'],
+								'deskripsi'	=> $this->input->post('deskripsi', TRUE)
+							);
+
+							$this->m_admin->insert('t_items', $items);
+					}
+					else
+					{
+						$this->session->set_flashdata('alert', 'Anda belum memilih gambar');
+					}
+
+					
 				}
 		}
 		$data['nama']		= $this->input->post('nama');
