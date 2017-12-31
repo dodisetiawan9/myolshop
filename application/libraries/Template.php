@@ -17,6 +17,13 @@ class Template
 
 		$this->ci->load->view('admin/dashboard', $data);
 	}
+
+	public function home($template, $data='')
+	{
+		$data['content'] 	= $this->ci->load->view($template, $data, TRUE);
+
+		$this->ci->load->view('home/home', $data);
+	}
 }
 
 /* End of file Template.php */
