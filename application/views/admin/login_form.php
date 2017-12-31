@@ -69,6 +69,13 @@
                         echo '</div>';
                     }
 
+                    if($this->session->flashdata('success'))
+                    {
+                        echo '<div class="alert alert-success alert-message">';
+                        echo $this->session->flashdata('success');
+                        echo '</div>';
+                    }
+
                 ?>
 				<h3><i class="fa fa-user"></i> Please Sign In</h3>
 				<hr />

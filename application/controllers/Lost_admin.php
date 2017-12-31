@@ -72,6 +72,37 @@ class Lost_admin extends CI_Controller {
 		$this->load->view('lost_password');
 	}
 
+	public function reset()
+	{
+		if($this->uri->segment(3))
+		{
+			$this->load->view('form_reset');
+
+			if($this->input->post('submit', TRUE) == 'Submit')
+			{
+				$this->form_validation->set_rules('password1', 'New Password', 'required|min_length[5]');
+				$this->form_validation->set_rules('password2', 'Re-Password', 'required|matches[password1]');
+
+				if($this->form_validation->run() == TRUE)
+				{
+					$pass = $this->input->post('password1');
+					$data['password'] = password_hash($pass, PASSWORD_DEFAULT, ['cost' => 10]);
+					$data['reset']		= '';
+
+					$cond['reset'] = $this->uri->segment(3);
+
+					$this->m_admin->update('t_admin', $data, $cond);
+					$this->session->set_flashdata('success', 'Password berhasil di perbaharui');
+
+					redirect('login'); 
+				}
+			}
+		}
+		else{
+			redirect('lost_admin');
+		}
+	}
+
 }
 
 /* End of file Lost_admin.php */
