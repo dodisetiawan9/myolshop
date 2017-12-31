@@ -25,6 +25,7 @@ class Login extends CI_Controller {
 				if (password_verify($password, $data->password)) 
 				{
 					$datauser = array(
+						'admin'	=> $data->id_admin,
 						'user'	=> $data->fullname,
 						'level' => $data->level,
 						'login'	=> TRUE
