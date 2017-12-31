@@ -12,6 +12,7 @@ class Item extends CI_Controller {
 
 	public function index()
 	{
+		$this->cek_login();
 		$data['data']	= $this->m_admin->get_all('t_items');
 		$this->template->admin('admin/manage_items', $data);
 	}
@@ -19,6 +20,7 @@ class Item extends CI_Controller {
 
 	public function add_item()
 	{
+		$this->cek_login();
 		if($this->input->post('submit', TRUE) == "Submit")
 		{
 			//validation
@@ -72,6 +74,7 @@ class Item extends CI_Controller {
 
 	public function detail()
 	{
+		$this->cek_login();
 		$id_item = $this->uri->segment(3);
 		$item	= $this->m_admin->get_where('t_items', array('id_item' => $id_item)); 
 		
@@ -90,6 +93,7 @@ class Item extends CI_Controller {
 
 	public function update_item()
 	{
+		$this->cek_login();
 		$id_item = $this->uri->segment(3);
 		if($this->input->post('submit', TRUE) == "Submit")
 		{
@@ -155,6 +159,15 @@ class Item extends CI_Controller {
 		}
 			
 		$this->template->admin('admin/item_form', $data);
+	}
+
+
+	function cek_login()
+	{
+		if(!$this->session->userdata('admin'))
+		{
+			redirect('login');
+		}
 	}
 }
 

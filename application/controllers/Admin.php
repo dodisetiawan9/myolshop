@@ -22,7 +22,7 @@ class Admin extends CI_Controller {
 		if($this->input->post('submit', TRUE) == 'Submit')
 		{
 			$this->form_validation->set_rules('username', 'Username', 'required|trim|min_length[4]');
-			$this->form_validation->set_rules('username', 'Username', "required|trim|min_length[4]|regex_match[/^[a-z A-Z.']+$/]");
+			$this->form_validation->set_rules('fullname', 'Fullname', "required|trim|min_length[4]|regex_match[/^[a-z A-Z.']+$/]");
 			$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
 			$this->form_validation->set_rules('password', 'Password', 'required');
 
@@ -34,16 +34,19 @@ class Admin extends CI_Controller {
 				{
 					echo '<script type="text/javascript">alert("Password yang anda masukan salah");window.location.replace("'.base_url().'login/logout")</script>';
 				}
+				else{
 
-				$data = array(
-					'username' => $this->input->post('username', TRUE),
-					'fullname' => $this->input->post('fullname', TRUE),
-					'email'		 => $this->input->post('email', TRUE),
-				);
+					$data = array(
+						'username' => $this->input->post('username', TRUE),
+						'fullname' => $this->input->post('fullname', TRUE),
+						'email'		 => $this->input->post('email', TRUE),
+					);
 
-				$cond = array('id_admin' => $this->session->userdata('admin'));
+					$cond = array('id_admin' => $this->session->userdata('admin'));
 
-				$this->m_admin->update('t_admin', $data, $cond);
+					$this->m_admin->update('t_admin', $data, $cond);
+
+				}
 			}
 		}
 
@@ -54,6 +57,41 @@ class Admin extends CI_Controller {
 		$data['email']		= $get->email;
 		$this->template->admin('admin/edit_profile', $data);
 	}
+
+	public function update_password()
+	{
+		$this->cek_login();
+
+		if($this->input->post('submit', TRUE) == 'Submit')
+		{
+			$this->form_validation->set_rules('password1', 'Password Baru', 'required');	
+			$this->form_validation->set_rules('password2', 'Password Lama', 'required');
+			
+			if($this->form_validation->run() == TRUE)
+			{
+				$get_data = $this->m_admin->get_where('t_admin', array('id_admin' => $this->session->userdata('admin')))->row();
+
+				if(!password_verify($this->input->post('password2', TRUE), $get_data->password))
+				{
+					echo '<script type="text/javascript">alert("Password yang anda masukan salah");window.location.replace("'.base_url().'login/logout")</script>';
+				}
+				else
+				{
+					$pass = $this->input->post('password1', TRUE);
+					$data['password'] = password_hash($pass, PASSWORD_DEFAULT, ['cost' => 10]);
+					$cond = array('id_admin' => $this->session->userdata('admin'));
+
+					$this->m_admin->update('t_admin', $data, $cond);
+					redirect('login/logout');
+				}
+			}
+
+
+		}
+
+		$this->template->admin('admin/update_pass');
+	}
+			
 
 	function cek_login()
 	{
