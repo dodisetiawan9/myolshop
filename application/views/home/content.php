@@ -3,7 +3,7 @@
 	    <div class="col s12 m3">
 	      <div class="card">
 	        <div class="card-image">
-	           <img src="<?= base_url(); ?>assets/upload/<?= $key->gambar; ?>">
+	           <a href="<?= base_url(); ?>home/detail/<?= $key->id_item; ?>"><img src="<?= base_url(); ?>assets/upload/<?= $key->gambar; ?>"></a>
 	           <span class="card-title"><?= $key->nama_item; ?></span>
 	        </div>
 	        <div class="card-content">

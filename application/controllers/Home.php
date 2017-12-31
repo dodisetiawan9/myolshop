@@ -15,6 +15,22 @@ class Home extends CI_Controller {
 		$this->template->home('home/content', $data);
 	}
 
+	public function detail()
+	{
+		if(is_numeric($this->uri->segment(3)))
+		{
+			$id = $this->uri->segment(3);
+			$data['data'] = $this->m_home->get_where('t_items', array('id_item' => $id));
+			$this->template->home('home/item_detail', $data);
+		}
+		else{
+			redirect('home');
+		}
+
+
+		
+	}
+
 }
 
 /* End of file Home.php */
