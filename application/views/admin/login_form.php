@@ -89,7 +89,7 @@
 					<button type="reset" class=" btn btn-default">Cancel</button>
 				</div>
 			</form>
-			
+			<p style="color:white">Lupa password? <a href="<?= base_url(); ?>lost_admin" style="color:orange">Klik disini</a></p>
 		</div>
 	</div>
 
