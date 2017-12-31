@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Home extends CI_Controller {
+class Cart extends CI_Controller {
 
 	public function __construct()
 	{
@@ -11,18 +11,28 @@ class Home extends CI_Controller {
 	}
 	public function index()
 	{
-		$data['data'] = $this->m_home->get_all('t_items');
-		$this->template->home('home/content', $data);
+		$this->template->home('home/cart');
 	}
 
-	public function detail()
+	public function add()
 	{
 		if(is_numeric($this->uri->segment(3)))
 		{
 			$id = $this->uri->segment(3);
-			$data['data'] = $this->m_home->get_where('t_items', array('id_item' => $id));
-			$this->template->home('home/item_detail', $data);
-		}
+			$get = $this->m_home->get_where('t_items', array('id_item' => $id))->row();
+
+			$data = array(
+				'id'			=> $get->id_item,
+				'name'		=> $get->nama_item,
+				'price'		=> $get->harga,
+				'weight'	=> $get->berat,
+				'qty'			=> 1
+			);
+
+			$this->cart->insert($data);
+
+			echo '<script type="text/javascript">window.history.go(-1)</script>';
+		}	
 		else{
 			redirect('home');
 		}

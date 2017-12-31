@@ -19,7 +19,17 @@
                   <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
                   <li><a href="#"><i class="fa fa-sign-in"></i> login</a></li>
                   <li><a href="#"><i class="fa fa-edit"></i> Daftar</a></li>
-              <li><a href="#"><i class="fa fa-shopping-cart"></i> cart</a></li>
+              <li><a href="<?= base_url(); ?>cart"><i class="fa fa-shopping-cart"></i> 
+              <?php 
+                  if($this->cart->total() > 0){
+                     echo 'Rp. '.number_format($this->cart->total(),0,',','.');
+                  } 
+                  else{
+                     echo 'cart';
+                  }
+              ?>
+                  </a>
+              </li>
                </ul>
                <a href="#" data-activates="slide-out" class="button-collapse"><i class="fa fa-bars"></i></a>
             </div>
