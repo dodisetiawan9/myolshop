@@ -7,9 +7,10 @@
 		<tr>
 			<th>#</th>
 			<th>Nama Barang</th>
+			<th>Harga Satuan</th>
 			<th>Berat</th>
 			<th>Jumlah</th>
-			<th>Harga</th>
+			<th>Harga Total</th>
 			<th>Opsi</th>
 		</tr>
 	</thead>
@@ -23,17 +24,18 @@
 			<tr>
 				<td><?= $no++; ?></td>	
 				<td><?= $key['name']; ?></td>
-				<td><?= $key['weight']; ?></td>
-				<td><?= $key['qty']; ?></td>
 				<td><?= 'Rp. '.number_format($key['price'],0,',','.'); ?></td>
+				<td><?= $key['weight'].' gr'; ?></td>
+				<td><?= $key['qty']; ?></td>
+				<td><?= 'Rp. '.number_format(($key['qty'] * $key['price']),0,',','.'); ?></td>
 				<td>
 					<a href="#<?= $key['rowid']; ?>" class="btn-floating orange"><i class="fa fa-edit"></i></a>
-					<a href="<?= base_url(); ?>cart/delete/<?= $key['rowid']; ?>" class="btn-floating red"><i class="fa fa-trash"></i></a>
+					<a href="<?= base_url(); ?>cart/delete/<?= $key['rowid']; ?>" class="btn-floating red" onclick="return confirm('Yakin ingin menghapus?')"><i class="fa fa-trash"></i></a>
 				</td>
 			</tr>
 
 			<div class="modal" id="<?= $key['rowid']; ?>">
-				<form action="<?= base_url(); ?>cart/update" method="post">
+				<form action="<?= base_url(); ?>cart/update/<?= $key['rowid']; ?>" method="post">
 					<div class="modal-content">
 						<div class="input-field">
 							<input type="number" name="qty" value="<?= $key['qty']; ?>" id="qty<?= $key['rowid']; ?>">
@@ -50,8 +52,8 @@
 		<?php }  ?>
 
 		<tr>
-			<td colspan="4">Total</td>
-			<td colspan="2"><?= 'Rp. '.number_format($this->cart->total(),0,',','.'); ?></td>
+			<td colspan="5" style="color:red"><b>Total</b></td>
+			<td colspan="2" style="text-align: left;font-weight: bold;color:red"><?= 'Rp. '.number_format($this->cart->total(),0,',','.'); ?></td>
 		</tr>
 	</tbody>
 </table>

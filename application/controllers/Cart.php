@@ -41,6 +41,43 @@ class Cart extends CI_Controller {
 		
 	}
 
+	public function update()
+	{
+		if($this->uri->segment(3))
+		{
+			$this->load->library('form_validation');
+
+			$this->form_validation->set_rules('qty', 'Jumlah Pesanan', 'required|numeric');
+
+			if($this->form_validation->run() == TRUE)
+			{
+				$data = array(
+					'qty'		=> $this->input->post('qty', TRUE),
+					'rowid'	=> $this->uri->segment(3)
+				);
+
+				$this->cart->update($data);
+				redirect('cart');
+			}
+			else{
+				$this->template->home('home/cart');
+			}
+		}
+	}
+
+	public function delete()
+	{
+		if($this->uri->segment(3))
+		{
+			$rowid = $this->uri->segment(3);
+			$this->cart->remove($rowid);
+
+			redirect('cart');
+		}
+		else{
+			redirect('cart');
+		}
+	}
 }
 
 /* End of file Home.php */
