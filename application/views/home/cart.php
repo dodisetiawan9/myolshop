@@ -2,6 +2,14 @@
 <hr />
 <br />
 
+<?php 
+	if($this->cart->total() == 0){
+		echo '<h3>Upsss Keranjang kosong!</h3>';
+	} 
+
+	else{
+?>
+
 <table class="responsive-table bordered striped">
 	<thead>
 		<tr>
@@ -57,5 +65,7 @@
 		</tr>
 	</tbody>
 </table>
+
+<?php } ?>
 <br />
-<button type="button" class="btn red" onclick="window.history.go(-1)">Kembali</button>
+<a href="<?= base_url(); ?>home" class="btn red">Kembali</a>

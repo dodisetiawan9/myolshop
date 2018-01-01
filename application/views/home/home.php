@@ -18,7 +18,7 @@
                <ul id="nav-mobile" class="right hide-on-med-and-down">
                   <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
                   <li><a href="#"><i class="fa fa-sign-in"></i> login</a></li>
-                  <li><a href="#"><i class="fa fa-edit"></i> Daftar</a></li>
+                  <li><a href="<?= base_url(); ?>home/register"><i class="fa fa-edit"></i> Daftar</a></li>
               <li><a href="<?= base_url(); ?>cart"><i class="fa fa-shopping-cart"></i> 
               <?php 
                   if($this->cart->total() > 0){
