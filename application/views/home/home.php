@@ -16,9 +16,22 @@
          <nav class="light-blue darken-2">
             <div class="nav-wrapper container">
                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                  <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-                  <li><a href="#"><i class="fa fa-sign-in"></i> login</a></li>
+                  <li><a href="<?= base_url(); ?>"><i class="fa fa-home"></i> Home</a></li>
+
+                  <?php if($this->session->userdata('user_login')) { ?>
+                     <li><a href="#" class="dropdown-button" data-activates="drop1"><i class="fa fa-user"></i> <?= $this->session->userdata('name'); ?><i class="fa fa-caret-down right"></i></a></li>
+                        
+                        <ul class="dropdown-content" id="drop1">
+                           <li><a href=""><i class="fa fa-user"></i> Profile</a></li>
+                           <li><a href=""><i class="fa fa-key"></i> Ubah Password</a></li>
+                           <li><a href="<?= base_url(); ?>home/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
+                        </ul>
+
+                  <?php } else{ ?>
+                  <li><a href="<?= base_url(); ?>home/login"><i class="fa fa-sign-in"></i> login</a></li>
                   <li><a href="<?= base_url(); ?>home/register"><i class="fa fa-edit"></i> Daftar</a></li>
+
+                  <?php } ?>
               <li><a href="<?= base_url(); ?>cart"><i class="fa fa-shopping-cart"></i> 
               <?php 
                   if($this->cart->total() > 0){
@@ -35,10 +48,33 @@
             </div>
             <!-- Side Nav -->
             <ul id="slide-out" class="side-nav">
-               <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-               <li><a href="#"><i class="fa fa-sign-in"></i> login</a></li>
-               <li><a href="#"><i class="fa fa-edit"></i> Daftar</a></li>
-               <li><a href="#"><i class="fa fa-shopping-cart"></i> cart</a></li>
+               <li><a href="<?= base_url(); ?>"><i class="fa fa-home"></i> Home</a></li>
+              <?php if($this->session->userdata('user_login')) { ?>
+                     <li><a href="#" class="dropdown-button" data-activates="drop2"><i class="fa fa-user"></i> <?= $this->session->userdata('name'); ?><i class="fa fa-caret-down right"></i></a></li>
+                        
+                        <ul class="dropdown-content" id="drop2">
+                           <li><a href=""><i class="fa fa-user"></i> Profile</a></li>
+                           <li><a href=""><i class="fa fa-key"></i> Ubah Password</a></li>
+                           <li><a href=""><i class="fa fa-sign-out"></i> Logout</a></li>
+                        </ul>
+
+                  <?php } else{ ?>
+                  <li><a href="<?= base_url(); ?>home/login"><i class="fa fa-sign-in"></i> login</a></li>
+                  <li><a href="<?= base_url(); ?>home/register"><i class="fa fa-edit"></i> Daftar</a></li>
+
+                  <?php } ?>
+               <li><a href="#"><i class="fa fa-shopping-cart"></i> 
+                  
+                  <?php 
+                     if($this->cart->total() > 0){
+                        echo 'Rp. '.number_format($this->cart->total(),0,',','.');
+                     } 
+                     else{
+                        echo 'cart';
+                     }
+                  ?>
+                  
+               </a></li>
             </ul>
          </nav>
       </header>

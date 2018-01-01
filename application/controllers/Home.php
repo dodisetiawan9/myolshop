@@ -71,6 +71,11 @@ class Home extends CI_Controller {
 
 		}
 
+		if($this->session->userdata('user_login') == TRUE)
+		{
+			redirect('home');
+		}
+
 		$data = array(
 					'user'				=> $this->input->post('username', TRUE),
 					'nama1'				=> $this->input->post('nama1', TRUE),
@@ -84,6 +89,54 @@ class Home extends CI_Controller {
 		$this->template->home('register', $data);
 	}
 
+	public function login()
+	{
+		if($this->input->post('submit') == 'Submit')
+		{
+			$username = $this->input->post('username', TRUE);
+			$password = $this->input->post('password', TRUE);
+
+			$cek = $this->m_home->get_where('t_users', "username = '$username' || email = '$username'");
+
+			if ($cek->num_rows() > 0) {
+				$data = $cek->row();
+
+				if (password_verify($password, $data->password)) 
+				{
+					$datauser = array(
+						'user_id'	=> $data->id_user,
+						'name'	=> $data->fullname,
+						'user_login'	=> TRUE
+					);
+
+					$this->session->set_userdata($datauser);
+					redirect('home');
+				} 
+				else 
+				{
+					$this->session->set_flashdata('alert', 'Password yang anda masukan salah!');
+				}
+			} 
+			
+			else 
+			{
+				$this->session->set_flashdata('alert', 'Username ditolak!');
+			}
+		}
+				
+		if($this->session->userdata('user_login') == TRUE)
+		{
+			redirect('home');
+		}
+
+		$this->load->view('login'); 
+	}
+
+	public function logout()
+	{
+		$this->session->sess_destroy();
+		redirect('home');
+	}
 }
 
 /* End of file Home.php */
