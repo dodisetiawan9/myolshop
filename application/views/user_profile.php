@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col m10 s12 offset-m1">
-		<h4 style="color:#939393;"><i class="fa fa-pencil-square-o"></i> From Registrasi</h4>
+		<h4 style="color:#939393;"><i class="fa fa-user"></i> Profil User</h4>
 		<hr />
 		<br />
 		<?php echo validation_errors('<p style="color:red">','</p>'); ?>
@@ -27,7 +27,7 @@
 
 				<div class="row">
 					<div class="input-field col m8 s12">
-						<input type="email" id="email" class="validate" name="email" value="<?= $email; ?>">
+						<input type="email" id="email" class="validate" name="email" value="<?= $email; ?>" readonly="readonly">
 						<label for="email">Email</label>
 					</div>
 				</div>
@@ -36,18 +36,6 @@
 					<div class="input-field col m8 s12">
 						<input type="number" id="telp" class="validate" name="tlp" value="<?= $tlp; ?>">
 						<label for="telp">Telepon</label>
-					</div>
-				</div>
-				
-				<div class="row">
-					<div class="input-field col m6 s12">
-						<input type="password" id="password" class="validate" name="password1">
-						<label for="first_name">Password</label>
-					</div>
-
-					<div class="input-field col m6 s12">
-						<input type="password" id="password" class="validate" name="password2">
-						<label for="password">Re-Password</label>
 					</div>
 				</div>
 				
@@ -70,8 +58,17 @@
 						<label for="alamat">Alamat</label>
 					</div>
 				</div>
+
+
+				<div class="row">
+					<div class="input-field col m8 s12">
+						<input type="password" id="password" class="validate" name="password">
+						<label for="first_name">Masukan Password</label>
+					</div>
+				</div>
+				
 					
-				<div class="row-right">
+				<div class="row right">
 					<button type="buttton" onclick="window.history.go(-1)" class="btn red waves-effect waves-light">Kembali</button>
 					<button type="submit" name="submit" value="Submit" class="btn blue waves-effect waves-light">Submit <i class=" fa fa-paper-plane"></i></button>
 				</div>

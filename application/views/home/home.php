@@ -22,7 +22,7 @@
                      <li><a href="#" class="dropdown-button" data-activates="drop1"><i class="fa fa-user"></i> <?= $this->session->userdata('name'); ?><i class="fa fa-caret-down right"></i></a></li>
                         
                         <ul class="dropdown-content" id="drop1">
-                           <li><a href=""><i class="fa fa-user"></i> Profile</a></li>
+                           <li><a href="<?= base_url(); ?>home/profile"><i class="fa fa-user"></i> Profile</a></li>
                            <li><a href=""><i class="fa fa-key"></i> Ubah Password</a></li>
                            <li><a href="<?= base_url(); ?>home/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
                         </ul>

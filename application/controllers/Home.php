@@ -132,6 +132,69 @@ class Home extends CI_Controller {
 		$this->load->view('login'); 
 	}
 
+	public function profile()
+	{
+		if(!$this->session->userdata('user_login'))
+		{
+			redirect('home/login');
+		}
+
+		$get = $this->m_home->get_where('t_users', array('id_user' => $this->session->userdata('user_id')))->row();
+
+		if($this->input->post('submit', TRUE) == 'Submit')
+		{
+
+			$this->form_validation->set_rules('nama1', 'Nama Depan', "required|min_length[3]|regex_match[/^[a-zA-Z'.]+$/]");
+			$this->form_validation->set_rules('nama2', 'Nama Belakang', "regex_match[/^[a-zA-Z'.]+$/]");
+			$this->form_validation->set_rules('username', 'Username', "required|min_length[5]|regex_match[/^[a-zA-Z0-9]+$/]");
+			$this->form_validation->set_rules('password', 'Masukan password anda', 'required|min_length[5]');
+			$this->form_validation->set_rules('jk', 'Jenis Kelamin', 'required');
+			$this->form_validation->set_rules('tlp', 'Telepon', 'required|min_length[8]|numeric');
+			$this->form_validation->set_rules('alamat', 'Alamat', 'required|min_length[10]');
+
+			if($this->form_validation->run() == TRUE)
+			{
+
+				if(password_verify($this->input->post('password', TRUE), $get->password))
+				{
+					$data = array(
+						'username'		=> $this->input->post('username', TRUE),
+						'fullname'		=> $this->input->post('nama1', TRUE).' '.$this->input->post('nama2', TRUE),
+						'jk'					=> $this->input->post('jk', TRUE),
+						'tlp'					=> $this->input->post('tlp', TRUE),
+						'alamat'			=> $this->input->post('alamat', TRUE),
+
+					);
+
+					if($this->m_home->update('t_users', $data, array('id_user' => $this->session->userdata('user_id'))))
+					{
+						$this->session->set_userdata(array('name' => $this->input->post('nama1', TRUE).' '.$this->input->post('nama2', TRUE)));
+						
+						redirect('home');
+					}
+					else{
+						echo '<script type="text/javascript">alert("Username / Email tidak tersedia");</script>';
+					}
+				}
+				else{
+					echo '<script type="text/javascript">alert("Password salah");window.location.replace("'.base_url().'home/logout")</script>';
+				}
+			}
+
+		}
+
+		$name = explode(' ', $get->fullname);
+		$data['nama1']		= $name[0];
+		$data['nama2']		= $name[1];
+		$data['username']	= $get->username;
+		$data['email']		= $get->email;
+		$data['jk']				= $get->jk;
+		$data['tlp']			= $get->tlp;
+		$data['alamat']		= $get->alamat;
+
+		$this->template->home('user_profile', $data);
+	}
+
 	public function logout()
 	{
 		$this->session->sess_destroy();

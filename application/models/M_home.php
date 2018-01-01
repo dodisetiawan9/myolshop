@@ -31,7 +31,7 @@ class M_home extends CI_Model {
 
 	public function update($table = null, $data = null, $where = null)
 	{
-		$this->db->update($table, $data, $where);
+		return $this->db->update($table, $data, $where);
 	}
 }
 
