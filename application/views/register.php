@@ -71,7 +71,7 @@
 					</div>
 				</div>
 					
-				<div class="row-right">
+				<div class="row right">
 					<button type="buttton" onclick="window.history.go(-1)" class="btn red waves-effect waves-light">Kembali</button>
 					<button type="submit" name="submit" value="Submit" class="btn blue waves-effect waves-light">Submit <i class=" fa fa-paper-plane"></i></button>
 				</div>

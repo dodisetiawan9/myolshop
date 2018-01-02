@@ -77,7 +77,7 @@ class Home extends CI_Controller {
 		}
 
 		$data = array(
-					'user'				=> $this->input->post('username', TRUE),
+					'username'				=> $this->input->post('username', TRUE),
 					'nama1'				=> $this->input->post('nama1', TRUE),
 					'nama2'				=> $this->input->post('nama2', TRUE),
 					'email'				=> $this->input->post('email', TRUE),
@@ -193,6 +193,45 @@ class Home extends CI_Controller {
 		$data['alamat']		= $get->alamat;
 
 		$this->template->home('user_profile', $data);
+	}
+
+
+	public function password()
+	{
+		if(!$this->session->userdata('user_login'))
+		{
+			redirect('home/login'); 
+		}
+
+		if($this->input->post('submit', TRUE) == 'Submit')
+		{
+			$this->form_validation->set_rules('password1', 'Password Baru', 'required|min_length[5]');	
+			$this->form_validation->set_rules('password2', 'Re-Password', 'required|matches[password1]');	
+			$this->form_validation->set_rules('password', 'Password Lama', 'required');
+			
+			if($this->form_validation->run() == TRUE)
+			{
+				$get_data = $this->m_home->get_where('t_users', array('id_user' => $this->session->userdata('user_id')))->row();
+
+				if(!password_verify($this->input->post('password', TRUE), $get_data->password))
+				{
+					echo '<script type="text/javascript">alert("Password yang anda masukan salah");window.location.replace("'.base_url().'home/logout")</script>';
+				}
+				else
+				{
+					$pass = $this->input->post('password1', TRUE);
+					$data['password'] = password_hash($pass, PASSWORD_DEFAULT, ['cost' => 10]);
+					$cond = array('id_user' => $this->session->userdata('user_id'));
+
+					$this->m_home->update('t_users', $data, $cond);
+					redirect('home/logout');
+				}
+			}
+		}
+
+
+
+		$this->template->home('pass');
 	}
 
 	public function logout()

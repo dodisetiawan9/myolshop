@@ -81,7 +81,7 @@
 
 							<div class="form-group" style="text-align: right">
 								<button type="submit" name="submit" value="Submit" class="btn btn-primary">Submit</button>
-								<a href="<?= base_url(); ?>login" class="btn btn-default">Sign in ..</a>
+								<a href="#" onclick="window.history.go(-1)" class="btn btn-default">Kembali</a>
 							</div>
 						</div>
 					</div>

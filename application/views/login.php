@@ -98,7 +98,7 @@
 				</div>
 				
 				<div class="action right">
-					<a href="" class="btn white black-text">Lost Password..</a>
+					<a href="<?= base_url(); ?>lost_user" class="btn white black-text">Lost Password..</a>
 					<button type="submit" name="submit" value="Submit" class="btn blue">Sign in..</button>	
 				</div>
 
