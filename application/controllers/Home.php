@@ -11,7 +11,7 @@ class Home extends CI_Controller {
 	}
 	public function index()
 	{
-		$data['data'] = $this->m_home->get_all('t_items');
+		$data['data'] = $this->m_home->get_where('t_items', ['status' => 1]);
 		$this->template->home('home/content', $data);
 	}
 

@@ -132,6 +132,22 @@
 
          $(document).ready(function() {
 
+            <?php if($this->uri->segment(1) == 'checkout' || $this->uri->segment(1) == 'Checkout'){ ?>
+               $('#prov').change(function(){
+                  var prov       = $('#prov').val();
+                  var province   = prov.split(',');
+
+                  $.ajax({
+                     url:"<?= base_url(); ?>checkout/city",
+                     method: "POST",
+                     data: { prov : province[0] },
+                     success: function(obj){
+                        $('#kota').html(obj);
+                     }
+                  });
+               });
+            <?php } ?>
+
             $(window).scroll(function(){
                if ($(this).scrollTop() > 100) {
                   $('.back-top').fadeIn();
