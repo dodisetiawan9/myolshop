@@ -234,6 +234,47 @@ class Home extends CI_Controller {
 		$this->template->home('pass');
 	}
 
+	public function transaksi()
+	{
+		if(!$this->session->userdata('user_id'))
+		{
+			redirect('home');
+		}
+
+		$data['get'] = $this->m_home->get_where('t_order', ['id_user' => $this->session->userdata('user_id')]);
+
+		$this->template->home('transaksi', $data);
+	}
+
+	public function detail_transaksi()
+	{
+		if(!is_numeric($this->uri->segment(3)))
+		{
+			redirect('home');
+		}
+
+		$table = "t_order o JOIN t_detail_order do ON (o.id_order = do.id_order) JOIN t_items i ON (do.id_item = i.id_item) JOIN t_users u ON (o.id_user = u.id_user)";
+
+		$data['get'] = $this->m_home->get_where($table, ['o.id_order' => $this->uri->segment(3)]);
+
+		$this->template->home('detail_transaksi', $data);
+	}
+
+	public function hapus_transaksi()
+	{
+		if(!is_numeric($this->uri->segment(3)))
+		{
+			redirect('home');
+		}
+
+		$table = array('t_order', 't_detail_order');
+
+		$this->m_home->delete($table, ['id_order' => $this->uri->segment(3)]);
+
+		redirect('home/transaksi');
+	}
+
+
 	public function logout()
 	{
 		$this->session->sess_destroy();

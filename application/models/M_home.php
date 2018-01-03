@@ -33,6 +33,12 @@ class M_home extends CI_Model {
 	{
 		return $this->db->update($table, $data, $where);
 	}
+
+	public function delete($table = null, $where = null)
+	{
+		$this->db->where($where);
+		$this->db->delete($table);
+	}
 }
 
 /* End of file m_admin.php */

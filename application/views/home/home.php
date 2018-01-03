@@ -3,7 +3,7 @@
 <html>
    <head>
       <meta charset="utf-8">
-      <title>Olshopku</title>
+      <title>MyOlshop</title>
       <!-- Materialize Css -->
       <link rel="stylesheet" href="<?= base_url(); ?>assets/css/materialize.min.css">
       <!-- Font-Awesome -->
@@ -24,6 +24,7 @@
                         <ul class="dropdown-content" id="drop1">
                            <li><a href="<?= base_url(); ?>home/profile"><i class="fa fa-user"></i> Profile</a></li>
                            <li><a href="<?= base_url(); ?>home/password"><i class="fa fa-key"></i> Ubah Password</a></li>
+                           <li><a href="<?= base_url(); ?>home/transaksi"><i class="fa fa-exchange"></i> Transaksi</a></li>
                            <li><a href="<?= base_url(); ?>home/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
                         </ul>
 
@@ -55,6 +56,7 @@
                         <ul class="dropdown-content" id="drop2">
                            <li><a href=""><i class="fa fa-user"></i> Profile</a></li>
                            <li><a href=""><i class="fa fa-key"></i> Ubah Password</a></li>
+                           <li><a href="<?= base_url(); ?>home/transaksi"><i class="fa fa-exchange"></i> Transaksi</a></li>
                            <li><a href=""><i class="fa fa-sign-out"></i> Logout</a></li>
                         </ul>
 
@@ -111,8 +113,8 @@
                </div>
                <div class="footer-copyright">
                   <div class="container">
-                     Copyright © 2017 OlShopKu. All Rights Reserved.
-                     <span class="grey-text text-lighten-4 right">Develope By <a class="blue-text text-lighten-4" href="#!">Achmad Jazuli</a></span>
+                     Copyright © 2017 Myolshop. All Rights Reserved.
+                    <!--  <span class="grey-text text-lighten-4 right">Develope By <a class="blue-text text-lighten-4" href="#!">Achmad Jazuli</a></span> -->
                   </div>
                </div>
             </footer>
