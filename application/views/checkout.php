@@ -40,21 +40,31 @@
 
 			<div class="row">
 				<div class="col m8 s12">
+					<label>Pilih Kurir</label>
+					<select name="kurir" class="browser-default" id="kurir">
+						<option value="pos">Pos</option>
+						<option value="jne">JNE</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col m8 s12">
 					<label>Pilih Layanan</label>
-					<select name="layanan" class="browser-default">
+					<select name="layanan" class="browser-default" id="layanan">
 						<option value="" disabled selected>Pilih layanan</option>
 					</select>
 				</div>
 
 				<div class="col m4 s12">
 					<label>Ongkos Kirim</label>
-					<input type="number" name="ongkir" value="0">
+					<input type="number" name="ongkir" value="0" id="ongkir">
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="input-field col m4 s12 offset-m8">
-					<input type="number" name="total" value="<?= $this->cart->total(); ?>">
+					<input type="number" name="total" value="<?= $this->cart->total(); ?>" id="total">
 					<label for="">Total Biaya</label>
 				</div>
 			</div>

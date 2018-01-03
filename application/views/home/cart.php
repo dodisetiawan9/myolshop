@@ -68,4 +68,9 @@
 
 <?php } ?>
 <br />
-<a href="<?= base_url(); ?>home" class="btn red">Kembali</a>
+
+<div class="row right">
+	<a href="<?= base_url(); ?>checkout" class="btn blue"><i class="fa fa-shopping-bag"></i> Checkout</a>
+	<a href="<?= base_url(); ?>home" class="btn red">Kembali</a>
+</div>
+<br />

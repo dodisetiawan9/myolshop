@@ -146,6 +146,55 @@
                      }
                   });
                });
+
+
+               $('#kota').change(function(){
+                  var kota   = $('#kota').val();
+                  var dest   = kota.split(',');
+                  var kurir  = $('#kurir').val()
+
+                  $.ajax({
+                     url:"<?= base_url(); ?>checkout/getcost",
+                     method: "POST",
+                     data: { dest : dest[0], kurir : kurir },
+                     success: function(obj){
+                        $('#layanan').html(obj);
+                     }
+                  });
+               });
+
+               $('#kurir').change(function(){
+                  var kota   = $('#kota').val();
+                  var dest   = kota.split(',');
+                  var kurir  = $('#kurir').val()
+
+                  $.ajax({
+                     url:"<?= base_url(); ?>checkout/getcost",
+                     method: "POST",
+                     data: { dest : dest[0], kurir : kurir },
+                     success: function(obj){
+                        $('#layanan').html(obj);
+                     }
+                  });
+               });
+
+                $('#layanan').change(function(){
+                  var layanan = $('#layanan').val();
+
+                  $.ajax({
+                     url:"<?= base_url(); ?>checkout/cost",
+                     method: "POST",
+                     data: { layanan : layanan },
+                     success: function(obj){
+                        var hasil = obj.split(",");
+
+                        $('#ongkir').val(hasil[0]);
+                        $('#total').val(hasil[1]);
+
+                     }
+                  });
+               });
+
             <?php } ?>
 
             $(window).scroll(function(){
