@@ -63,11 +63,14 @@ class Item extends CI_Controller {
 					
 				}
 		}
-		$data['nama']				= $this->input->post('nama');
-		$data['harga']			= $this->input->post('harga');
-		$data['berat']			= $this->input->post('berat');
-		$data['status']			= $this->input->post('status');
-		$data['deskripsi']	= $this->input->post('deskripsi');
+		$data['kategori']		= $this->input->post('kategori', TRUE);
+		$data['kat']				= $this->m_admin->get_all('t_kategori');
+
+		$data['nama']				= $this->input->post('nama', TRUE);
+		$data['harga']			= $this->input->post('harga', TRUE);
+		$data['berat']			= $this->input->post('berat', TRUE);
+		$data['status']			= $this->input->post('status', TRUE);
+		$data['deskripsi']	= $this->input->post('deskripsi', TRUE);
 		$data['header'] 		= "Add New Data";
 		$this->template->admin('admin/item_form', $data);
 	}

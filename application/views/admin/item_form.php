@@ -58,6 +58,20 @@
           </div>
 
           <div class="form-group">
+            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">Kategori</label>
+            <div class="col-md-6 col-sm-7 col-xs-12">
+              <textarea id="out"  name="kategori" class="form-control" id="" rows="2"><?= $kategori; ?></textarea>
+              <p class="help-text">* Gunakan koma (,) untuk memisahkan kategori</p>
+              <?php foreach ($kat->result() as $k) : ?>
+                <input type="checkbox" name="kat[]" value="<?= $k->kategori; ?>" onclick="addlist(this, 'out')"><?= $k->kategori; ?>
+        
+              <?php endforeach; ?>            
+              
+
+            </div>
+        </div>
+
+          <div class="form-group">
           	<label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">Status</label>
           	<div class="col-md-4 col-sm-6">
           		<select name="status" id="" class="form-control">
@@ -68,12 +82,12 @@
           	</div>
           </div>
 			
-		  <div class="form-group">
+		    <div class="form-group">
             <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">Deskripsi</label>
             <div class="col-md-6 col-sm-6 col-xs-12">
               <textarea  name="deskripsi" class="form-control" id="" rows="4"><?= $deskripsi; ?></textarea>
             </div>
-          </div>
+        </div>
 
           <div class="in_solid"></div>
 			<br />
@@ -88,3 +102,4 @@
         </form>
 	</div>
 </div>
+

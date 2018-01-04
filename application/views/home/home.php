@@ -83,7 +83,7 @@
 
       <main>
          <div class="toko">
-            <h2><a href="#"><i class="fa fa-shopping-cart"></i> OlShopKu</a></h2>
+            <h2><a href="#"><i class="fa fa-shopping-cart"></i> MyOlshop</a></h2>
             <p>Teman Belanja Anda yang Terpercaya</p>
          </div>
          <div class="cont">
@@ -129,6 +129,7 @@
       <script type="text/javascript" src="<?= base_url(); ?>assets/js/materialize.min.js"></script>
       <!-- custom -->
       <script type="text/javascript">
+         
          $(".button-collapse").sideNav();
          $(".modal").modal();
 

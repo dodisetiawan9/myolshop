@@ -62,6 +62,33 @@
     <!-- Custom Theme Scripts -->
     <script src="<?= base_url(); ?>admin_assets/js/custom.min.js"></script>
     <script type="text/javascript">
+
+       function addlist(obj, out)
+         {
+            var grup = obj.form[obj.name];
+            var len = grup.length;
+            var list = new Array();
+
+            if(len > 1){
+               for (var i = 0; i < len; i++) {
+                  if(grup[i].checked){
+                     list[list.length] = grup[i].value;
+                  }
+               }
+            }
+
+            else{
+               if(grup.checked){
+                     list[list.length] = grup.value ;
+                  }
+            }
+
+            document.getElementById(out).value = list.join(', ');
+
+            return;
+         }
+
+
       $(document).ready(function(){
         $('#datatable').DataTable();
       });
